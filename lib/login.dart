@@ -1,3 +1,4 @@
+import 'package:final_year_app/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -130,7 +131,7 @@ class loginMainState extends State<loginMain> {
                   height: 40.0,
                   child: TextButton(
                     onPressed: (){
-                      // Navigator.push(context, MaterialPageRoute(builder: (_)=>SignupApp()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>SignupApp()));
                     }, 
                     child: Text("Create An Account")
                   ),
