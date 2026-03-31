@@ -1,18 +1,19 @@
+import 'package:final_year_app/navigationDrawer.dart';
 import 'package:final_year_app/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+// class LoginPage extends StatelessWidget {
+//   const LoginPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: loginMain() ,
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: loginMain() ,
+//       debugShowCheckedModeBanner: false,
+//     );
+//   }
+// }
 
 class loginMain extends StatefulWidget {
   const loginMain({super.key});
@@ -117,6 +118,7 @@ class loginMainState extends State<loginMain> {
                           fontSize: 16.0,
                           gravity: ToastGravity.BOTTOM,
                           );
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationMain()));
                       }
                     }, 
                     child: Text("Login")

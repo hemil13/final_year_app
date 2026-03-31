@@ -1,8 +1,10 @@
 import 'package:final_year_app/login.dart';
+import 'package:final_year_app/signup.dart';
+import 'package:final_year_app/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const LoginPage());
+  runApp(SplashMain());
 }
 
 class MyApp extends StatelessWidget {
