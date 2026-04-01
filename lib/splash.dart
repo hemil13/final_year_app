@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:final_year_app/login.dart';
+import 'package:final_year_app/tabDemo.dart';
 import 'package:flutter/material.dart';
 
 class SplashMain extends StatelessWidget{
@@ -37,6 +38,7 @@ class SplashDemo extends State<SplashApp>{
     return new Timer(Duration(seconds: 3), (){
       // Navigator.push(context, MaterialPageRoute(builder: (_)=> RazorpayPage() ));
       Navigator.push(context, MaterialPageRoute(builder: (_)=> loginMain() ));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=> TabApp() ));
       
       // if(sUserId == ""){
       //   //Navigator.push(context, MaterialPageRoute(builder: (_)=> TabApp() ));
