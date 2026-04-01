@@ -21,6 +21,7 @@ class BottomState extends State<BottomDemo>{
     // TODO: implement build
     //throw UnimplementedError();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text("Bottom Navigation"),
@@ -38,8 +39,8 @@ class BottomState extends State<BottomDemo>{
               label: "Profile"
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.logout),
-              label: "Logout"
+              icon: Icon(Icons.settings),
+              label: "Settings"
             )
           ],
           currentIndex: selectedIndex,
