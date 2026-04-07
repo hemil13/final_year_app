@@ -1,5 +1,7 @@
+import 'package:final_year_app/login.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:final_year_app/SqliteHelper.dart';
 
 class SignupApp extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class SignupApp extends StatefulWidget {
 
 class SignupState extends State<SignupApp> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  var dbHelper = SqliteHelper();
 
   late String sName, sEmail, sContact, sPassword, sConfirmPassword;
 
@@ -169,6 +172,7 @@ class SignupState extends State<SignupApp> {
                                 msg: "Signup Successful",
                                 toastLength: Toast.LENGTH_SHORT,
                               );
+                              insertData(sName, sEmail, sContact, sPassword);
                             }
                           }
                         },
@@ -186,5 +190,33 @@ class SignupState extends State<SignupApp> {
         ),
       ),
     );
+  }
+
+  void insertData(sName,sEmail,sContact,sPassword) async{
+
+    var listData = await dbHelper.checkUserData(sEmail, sContact);
+    //print(listData,listData.le);
+    if(listData.length > 0){
+      Fluttertoast.showToast(
+        msg: "You have already Registered",
+        toastLength: Toast.LENGTH_SHORT
+      );
+    }
+    else{      
+      Map<String,dynamic> map = {
+        SqliteHelper.name : sName,
+        SqliteHelper.email : sEmail,
+        SqliteHelper.contact : sContact,
+        SqliteHelper.password : sPassword
+      };
+      final id = await dbHelper.insertFun(map);
+      print(id);
+      Fluttertoast.showToast(
+        msg: "Signup Successfully",
+        toastLength: Toast.LENGTH_SHORT
+      );
+      // Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (_)=>loginMain()));
+    }
   }
 }

@@ -1,7 +1,10 @@
+import 'package:final_year_app/SqliteHelper.dart';
 import 'package:final_year_app/navigationDrawer.dart';
 import 'package:final_year_app/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:final_year_app/constantData.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // class LoginPage extends StatelessWidget {
 //   const LoginPage({super.key});
@@ -26,6 +29,7 @@ class loginMainState extends State<loginMain> {
 
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   late String sEmail,sPassword;
+  var dbHelper = SqliteHelper();
 
 
   @override
@@ -109,16 +113,18 @@ class loginMainState extends State<loginMain> {
                     onPressed: (){
                       if(formKey.currentState!.validate()){
                         formKey.currentState!.save();
-                        Fluttertoast.showToast(
-                          msg: "Login Successful $sEmail, $sPassword",
-                          toastLength: Toast.LENGTH_LONG,
-                          timeInSecForIosWeb: 2,
-                          backgroundColor: Colors.green,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                          gravity: ToastGravity.BOTTOM,
-                          );
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationMain()));
+                        loginData(sEmail, sPassword);
+                        // Fluttertoast.showToast(
+                        //   msg: "Login Successful $sEmail, $sPassword",
+                        //   toastLength: Toast.LENGTH_LONG,
+                        //   timeInSecForIosWeb: 2,
+                        //   backgroundColor: Colors.green,
+                        //   textColor: Colors.white,
+                        //   fontSize: 16.0,
+                        //   gravity: ToastGravity.BOTTOM,
+                        //   );
+                          
+                          // Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationMain()));
                       }
                     }, 
                     child: Text("Login")
@@ -144,5 +150,46 @@ class loginMainState extends State<loginMain> {
         ),
       ),
     );
+  }
+
+  void loginData(sEmail,sPassword) async{
+    var sp = await SharedPreferences.getInstance();
+    var listData = await dbHelper.loginData(sEmail, sPassword);
+    if(listData.length > 0){
+      print(listData);
+      print(listData.length);
+      
+      var sUserId = listData[0]['userId'];
+      var sName = listData[0]['name'];
+      var sEmail = listData[0]['email'];
+      var sContact = listData[0]['contact'];
+      var sPassword = listData[0]['password'];
+      
+      print(sUserId);
+      print(sName);
+      print(sEmail);
+      print(sContact);
+      print(sPassword);
+
+      sp.setString(ConstantData.USERID, sUserId.toString());
+      sp.setString(ConstantData.NAME, sName);
+      sp.setString(ConstantData.EMAIL, sEmail);
+      sp.setString(ConstantData.CONTACT, sContact);
+      sp.setString(ConstantData.PASSWORD, sPassword);
+
+      Fluttertoast.showToast(
+        msg: "Login Successfully",
+        toastLength: Toast.LENGTH_SHORT
+      );
+
+      // Navigator.push(context, MaterialPageRoute(builder: (_)=> ProfileApp()));
+
+    }
+    else{      
+      Fluttertoast.showToast(
+        msg: "Login Unsuccessfully / user not exists",
+        toastLength: Toast.LENGTH_SHORT
+      );
+    }
   }
 }

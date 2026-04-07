@@ -1,0 +1,11 @@
+class ConstantData{
+
+  // static final BASE_URL = "http://192.168.1.17/ni_api/";
+
+  static final USERID = "userId";
+  static final NAME = "name";
+  static final EMAIL = "email";
+  static final CONTACT = "contact";
+  static final PASSWORD = "password";
+
+}
