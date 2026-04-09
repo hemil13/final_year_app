@@ -61,4 +61,14 @@ class SqliteHelper{
     return await db!.query(tableName,where: '($email = ? OR $contact = ?) AND $password = ?',whereArgs: [sEmail,sEmail,sPassword]);
   } 
 
+    Future<int> updateFun(Map<String,dynamic> map,String sUserId) async{
+    Database? db = await instance.database;
+    return db!.update(tableName, map,where: '$userId = ?',whereArgs: [sUserId]);
+  }
+
+  Future<int> deleteFun(String sUserId) async{
+    Database? db = await instance.database;
+    return db!.delete(tableName, where: '$userId = ?',whereArgs: [sUserId]);
+  }
+
 }

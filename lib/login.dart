@@ -1,10 +1,11 @@
 import 'package:final_year_app/SqliteHelper.dart';
 import 'package:final_year_app/navigationDrawer.dart';
+import 'package:final_year_app/profile.dart';
 import 'package:final_year_app/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:final_year_app/constantData.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'; 
 
 // class LoginPage extends StatelessWidget {
 //   const LoginPage({super.key});
@@ -182,7 +183,7 @@ class loginMainState extends State<loginMain> {
         toastLength: Toast.LENGTH_SHORT
       );
 
-      // Navigator.push(context, MaterialPageRoute(builder: (_)=> ProfileApp()));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=> ProfileApp()));
 
     }
     else{      
