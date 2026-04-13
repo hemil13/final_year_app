@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:final_year_app/bottomNav.dart';
+import 'package:final_year_app/jsonLogin.dart';
+import 'package:final_year_app/jsonSignup.dart';
 import 'package:final_year_app/login.dart';
 import 'package:final_year_app/razorpayDemo.dart';
 import 'package:final_year_app/tabDemo.dart';
@@ -38,11 +40,15 @@ class SplashDemo extends State<SplashApp>{
   Future<Timer> startTimer() async{
     
     return new Timer(Duration(seconds: 3), (){
-      Navigator.push(context, MaterialPageRoute(builder: (_)=> RazorpayPage() ));
+      // Navigator.push(context, MaterialPageRoute(builder: (_)=> RazorpayPage() ));
       // Navigator.push(context, MaterialPageRoute(builder: (_)=> loginMain() ));
       // Navigator.push(context, MaterialPageRoute(builder: (_)=> TabApp() ));
 
       // Navigator.push(context, MaterialPageRoute(builder: (_)=> BottomDemo() ));
+
+      // Navigator.push(context, MaterialPageRoute(builder: (_)=> JsonSignupApp() ));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=> JsonLoginApp() ));
+
       
       // if(sUserId == ""){
       //   //Navigator.push(context, MaterialPageRoute(builder: (_)=> TabApp() ));

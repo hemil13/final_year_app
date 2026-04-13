@@ -14,8 +14,8 @@ class RazorpayPage extends StatefulWidget {
 class _RazorpayPageState extends State<RazorpayPage> {
 
   final _razorpay = Razorpay();
-  String apiKey = 'rzp_test_6h2Muv9RtODB8Y';
-  String apiSecret = 'J6IhUoTgFEY8Wu82OY9BJJrS';
+  String apiKey = 'rzp_test_SbNte2FM7FsHIn';
+  String apiSecret = 'KTd4klilNf1YOAbD2bu6jeDF';
 
   Map<String, dynamic> paymentData = {
     'amount': 50000, //amount in paise (e.g., 1000 paise = Rs. 10)
